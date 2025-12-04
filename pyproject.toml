@@ -1,0 +1,13 @@
+[project]
+name = "taisho-stock-analysis"
+version = "0.1.0"
+description = "Taiwan stock analysis system"
+authors = [{ name = "YOUR_NAME", email = "YOUR_EMAIL" }]
+requires-python = ">=3.10"
+
+[project.dependencies]
+requests = "*"
+pandas = "*"
+SQLAlchemy = "*"
+psycopg = {extras = ["binary"], version = "*" }
+python-dotenv = "*"
