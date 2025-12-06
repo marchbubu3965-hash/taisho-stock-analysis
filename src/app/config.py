@@ -1,17 +1,15 @@
 import os
+from dotenv import load_dotenv
 
-class Settings:
-    POSTGRES_HOST = os.getenv("POSTGRES_HOST", "postgres-db")
-    POSTGRES_PORT = os.getenv("POSTGRES_PORT", "5432")
-    POSTGRES_USER = os.getenv("POSTGRES_USER", "postgres")
-    POSTGRES_PASSWORD = os.getenv("POSTGRES_PASSWORD", "postgres")
-    POSTGRES_DB = os.getenv("POSTGRES_DB", "stock_db")
+# Load .env file if exists
+load_dotenv()
 
-    @property
-    def database_url(self):
-        return (
-            f"postgresql://{self.POSTGRES_USER}:{self.POSTGRES_PASSWORD}"
-            f"@{self.POSTGRES_HOST}:{self.POSTGRES_PORT}/{self.POSTGRES_DB}"
-        )
+# Database URL (used by db.py)
+DATABASE_URL = os.getenv(
+    "DATABASE_URL",
+    "postgresql://postgres:postgres@localhost:5432/taisho_db"
+)
 
-settings = Settings()
+# App settings
+APP_NAME = "Taisho Stock Analysis API"
+ENV = os.getenv("ENV", "development")
