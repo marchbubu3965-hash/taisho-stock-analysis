@@ -1,0 +1,22 @@
+name: Build and Push Docker Image
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Log in to GHCR
+        run: echo "${{ secrets.CR_PAT }}" | docker login ghcr.io -u ${{ secrets.GH_USERNAME }} --password-stdin
+
+      - name: Build image
+        run: docker build -t ghcr.io/${{ secrets.GH_USERNAME }}/taisho-stock-analysis:latest .
+
+      - name: Push image
+        run: docker push ghcr.io/${{ secrets.GH_USERNAME }}/taisho-stock-analysis:latest
