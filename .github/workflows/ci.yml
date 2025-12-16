@@ -67,5 +67,6 @@ jobs:
             -t $IMAGE_NAME \
             .
 
+
       - name: Push Docker image
         run: docker push $IMAGE_NAME
